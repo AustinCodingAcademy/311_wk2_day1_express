@@ -8,14 +8,14 @@ const { users } = require('./state')
 /* BEGIN - create routes here */
 
 app.use((req, res, next) => {
-  if(req.path === "/users" && req.method === "GET") {
+  if (req.path === "/users" && req.method === "GET") {
     return res.json(users)
   }
   next();
 });
 
 app.use((req, res, next) => {
-  if(req.path === "/users/1" && req.method === "GET") {
+  if (req.path === "/users" && req.method === "GET") {
     return res.json(users/1)
   }
   next();
