@@ -7,19 +7,36 @@ const { users } = require('./state')
 
 /* BEGIN - create routes here */
 
-app.use((req, res, next) => {
-  if (req.path === "/users" && req.method === "GET") {
-    return res.json(users)
-  }
-  next();
+app.get('/users',(req, res) => {
+  return res.json(users)
 });
 
-app.use((req, res, next) => {
-  if (req.path === "/users" && req.method === "GET") {
-    return res.json(users/1)
-  }
-  next();
+app.get('/users/1',(req, res) => {
+  return res.json(users[0])
 });
+
+app.post('/users',(req, res) => {
+  let newPerson = {
+    "_id": 6,
+    "name": "Luke Bryan",
+    "occupation": "Country Artist",
+    "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
+  };
+  users.push(newPerson);
+  res.json(users[users.length - 1])
+})
+
+app.get('/users',(req, res) => {
+  return res.json(users)
+});
+
+app.put('/users',(req, res) => {
+  
+})
+
+
+
+
 
 
 
@@ -27,3 +44,10 @@ app.use((req, res, next) => {
 
 app.listen(port, () => 
   console.log(`Example app listening on port ${port}!`))
+
+
+// app.post('/users',(req, res) => {
+  // POST = adding something
+  // adding something = array.push()
+  // a hard coded object
+// })
