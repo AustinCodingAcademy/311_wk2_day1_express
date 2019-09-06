@@ -1,14 +1,18 @@
 
 const express = require('express')
 const app = express()
+const bodyParser = require("body-parser")
 const port = process.env.PORT || 4000
-
 const { users } = require('./state')
 
 /* BEGIN - create routes here */
+let counter = users.length;
+
+app.use(bodyParser.json());
 
 app.get('/users',(req, res) => {
-  return res.json(users)
+  res.json(users)
+  console.log(`number of users: ${counter}`)
 });
 
 app.get('/users/1',(req, res) => {
@@ -16,8 +20,11 @@ app.get('/users/1',(req, res) => {
 });
 
 app.post('/users',(req, res) => {
+
+  console.log(req.body)
+
   let newPerson = {
-    "_id": 6,
+    "_id": counter + 1,
     "name": "Luke Bryan",
     "occupation": "Country Artist",
     "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
@@ -30,13 +37,22 @@ app.get('/users',(req, res) => {
   return res.json(users)
 });
 
-app.put('/users',(req, res) => {
-  
+app.put('/users/1', (req, res) => {
+  users[0].name = 'Jay Leno'
+  res.json(users[0])
 })
 
+app.delete('/users/1', (req, res) => {
+  users.shift()
+  res.send('deleted')
+})
 
+// third section
 
-
+app.get("/users/2", (req, res) => {
+  users[1]._id == userId;
+  res.json(users[1]);
+})
 
 
 

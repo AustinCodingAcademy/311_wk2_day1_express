@@ -59,5 +59,5 @@ Use Postman to test the routes created in the following sections. Your base url 
     * Give your server the ability to respond to a PUT request with a path `/users/:userId` and just change any key value on the user object with this _id 
 
   * DELETE /users/1 => DELETE /users/:userId
-    * Give your server the ability to respond to a DELETE request with a path `/users/:userId` and find the user with this id from the array. Give this user object a new key value `isActive: false`. Use `res.send()` to send back a messsage, "deleted"
+    * Give your server the ability to respond to a DELETE request with a path `/users/:userId` and find the user with this id from the array. Give this user object a new key value `isActive: false`. Use `res.send()` to send back a message, "deleted"
 
