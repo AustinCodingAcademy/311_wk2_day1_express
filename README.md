@@ -33,7 +33,7 @@ Use Postman to test the routes created in the following sections. Your base url 
     * Give your server the ability to respond to a PUT request with a path "/users/1" and just change any key value (ex. name, occupation) on the first user object in the users array in state.js. Use `res.json()` to send this user back to the client.
 
   * DELETE /users/1
-    * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a messsage, "deleted"
+    * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a message, "deleted"
 
 ## Part 2. Body-parser module
 
@@ -59,5 +59,5 @@ Use Postman to test the routes created in the following sections. Your base url 
     * Give your server the ability to respond to a PUT request with a path `/users/:userId` and just change any key value on the user object with this _id 
 
   * DELETE /users/1 => DELETE /users/:userId
-    * Give your server the ability to respond to a DELETE request with a path `/users/:userId` and find the user with this id from the array. Give this user object a new key value `isActive: false`. Use `res.send()` to send back a messsage, "deleted"
+    * Give your server the ability to respond to a DELETE request with a path `/users/:userId` and find the user with this id from the array. Give this user object a new key value `isActive: false`. Use `res.send()` to send back a message, "deleted"
 
