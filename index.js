@@ -49,12 +49,22 @@ app.delete('/users/1', (req, res) => {
 
 // third section
 
-app.get("/users/2", (req, res) => {
-  users[1]._id == userId;
-  res.json(users[1]);
+app.get("/users/:userId", (req, res) => {
+  let id = users.filter (x => x._id == req.params.userId)
+  res.json(id[0])
 })
 
+app.put("/users/:userId", (req, res) => {
+  let id = users.filter (x => x._id == req.params.userId)
+  id[0].name = "Jed Bartlet"
+  res.json(id[0])
+})
 
+app.delete("/users/:userId", (req, res) => {
+  let id = users.filter (x => x._id == req.params.userId)
+  id[0].isActive = false;
+  res.send("deleted")
+})
 
 /* END - create routes here */
 
