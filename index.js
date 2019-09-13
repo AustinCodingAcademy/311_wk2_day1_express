@@ -30,10 +30,10 @@ app.post("/users", function(req, res) {
 	console.log(req.body);
 });
 
-// app.put("/users/1", (req, res) => {
-// 	users[0].occupation = "Resident of The Black Lodge";
-// 	res.send(users[0]);
-// });
+app.put("/users/1", (req, res) => {
+	users[0].occupation = "Resident of The Black Lodge";
+	res.send(users[0]);
+});
 
 app.delete("/users/1", (req, res) => {
 	users.pop();
