@@ -1,5 +1,6 @@
 
 const express = require('express')
+const parse = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -39,8 +40,37 @@ app.post('/users', (req, res) => {
   //res.send(req.body)
 })
 
+//PUT Method - update a user
+app.put('/users/:id', (req, res) => {
+  const found = users.some(user =>user._id === parseInt(req.params.id))
+
+  if(found) {
+    const upUser = req.body
+      users.forEach(user => {
+        if(user._id === parseInt(req.params.id)){
+          user.name = upUser.name ? upUser.name : user.name
+          user.occupation = upUser.occupation ? upUser.occupation : user.occupation
+
+          res.json ({msg: `The user ${req.params.id} was updated.`})
+        }
+      })
+  }else{
+    res.status(400).json({msg: `No user with the id of ${req.params.id}`})
+  }
+})
+
 //DELETE Method
-app.delete('/users/1')
+app.delete('/users/:id', (req, res) => {
+  //Create a variable to determing if a userID is found.
+  const found = users.some(user => user._id === parseInt(req.params.id));
+  //Create an if statement to return the user info if the ID is found, and an error if the ID is not found.
+  if(found) {
+    res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});
+  } else {
+    res.status(400).json({msg: `User ${req.params.id} not found`})
+  }
+});
+//_________________________________________
 
 /* END - create routes here */
 
