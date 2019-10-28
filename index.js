@@ -1,13 +1,17 @@
 
 const express = require('express')
-const parse = require('body-parser')
+const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
 
 const { users } = require('./state')
+const counter = users.length + 1
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 /* BEGIN - create routes here */
 
 //GET method to get all users.
@@ -27,18 +31,22 @@ app.get('/users/:id', (req, res) => {
   }
 });
 //_________________________________________
+
+
 //POST Method
 app.post('/users', (req, res) => {
     const newUser = {
-      _id: req.body._id,
+      _id: counter,
       name: req.body.name,
       occupation: req.body.occupation,
       avatar: req.body.avatar
     }
     users.push(newUser)
     res.json(users)
-  //res.send(req.body)
+  console.log(users)
 })
+
+
 
 //PUT Method - update a user
 app.put('/users/:id', (req, res) => {
@@ -58,6 +66,8 @@ app.put('/users/:id', (req, res) => {
     res.status(400).json({msg: `No user with the id of ${req.params.id}`})
   }
 })
+
+
 
 //DELETE Method
 app.delete('/users/:id', (req, res) => {
