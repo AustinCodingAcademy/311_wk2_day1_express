@@ -1,11 +1,10 @@
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
 
 const { users } = require('./state')
-const counter = users.length + 1
+let counter = users.length+1
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -43,7 +42,10 @@ app.post('/users', (req, res) => {
     }
     users.push(newUser)
     res.json(users)
+    counter = counter + 1
   console.log(users)
+  //console.log(users.length)
+  //console.log('This is counterTool: ' + counter)
 })
 
 
@@ -61,10 +63,9 @@ app.put('/users/:id', (req, res) => {
 
           res.json ({msg: `The user ${req.params.id} was updated.`})
         }
-      })
+      }) 
   }else{
-    res.status(400).json({msg: `No user with the id of ${req.params.id}`})
-  }
+    res.status(400).json({msg: `No user with the id of ${req.params.id}`})}
 })
 
 
@@ -73,12 +74,24 @@ app.put('/users/:id', (req, res) => {
 app.delete('/users/:id', (req, res) => {
   //Create a variable to determing if a userID is found.
   const found = users.some(user => user._id === parseInt(req.params.id));
+  userIndex = parseInt(req.params.id);
+  deletedUserIndex = userIndex -1;
+  
+  
+
+
   //Create an if statement to return the user info if the ID is found, and an error if the ID is not found.
   if(found) {
-    res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});
-  } else {
+    users[deletedUserIndex]["isActive"] = "false"
+    res.send(`User ${userIndex} was successfully deleted`)
+    //  res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});res.send("deleted")
+    } else {
     res.status(400).json({msg: `User ${req.params.id} not found`})
   }
+  
+  console.log(deletedUserIndex)
+  console.log(userIndex)
+  console.log(users)
 });
 //_________________________________________
 
