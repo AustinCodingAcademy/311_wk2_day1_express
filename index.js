@@ -1,47 +1,67 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 4000;
 
 const { users } = require("./state");
+const jsonParser = bodyParser.json();
+let count = users.length + 1;
 
 /* BEGIN - create routes here */
+// Get all users
 app.get("/users", (req, res) => {
   res.json(users);
 });
+// Get single user by id
 app.get("/users/:id", (req, res) => {
   let id = parseInt(req.params.id);
-  if (id > 0 && id <= users.length)
-    res.json(users[id - 1]);
+  let found = users.find(user => user._id === id);
+  if (found)
+    res.json(found);
   else
-    res.status(404).send(`There is no user with id: ${id}`);
+    res.status(400).send(`There is no user with id: ${id}`);
 });
-app.post("/users", (req, res) => {
-  users.push({
-    _id: 6,
-    name: "Spongebob Squarepants",
-    occupation: "absorbent and yellow and porous",
-    avatar:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-  });
-  res.json(users[users.length - 1]);
+// Post a new user from body of client input
+app.post("/users", jsonParser, (req, res) => {
+  const newUser = {
+    _id: count,
+    name: req.body.name,
+    occupation: req.body.occupation,
+    avatar: req.body.avatar
+  }
+  users.push(newUser);
+  count++;
+  res.json(newUser);
 });
+// Update a current user
 app.put('/users/:id', (req, res) => {
   let id = parseInt(req.params.id);
-  if (id > 0 && id <= users.length) {
-    users[id - 1].occupation = "poop scooper";
-    res.json(users[id - 1]);
+  let found = users.find(user => user._id === id)
+  if (found) {
+    found.occupation = "poop scooper";
+    res.json(found);
   }
   else
-    res.status(404).send(`There is no user with id: ${id}`);
+    res.status(400).send(`There is no user with id: ${id}`);
 })
+// Make a user inactive
 app.delete('/users/:id', (req, res) => {
   let id = parseInt(req.params.id);
-  if (id > 0 && id <= users.length) {
-    users.splice(id - 1, 1);
-    res.send('deleted.');
+  let found = users.find(user => user._id === id);
+  if (found) {
+    found.isActive = false;
+    res.send('deleted');
   }
   else
-    res.status(404).send(`There is no user with id: ${id}`);
+    res.status(400).send(`There is no user with id: ${id}`);
+  // *** Alternative code - delete the user entirely.
+  // let found = users.findIndex(user => user._id === id);
+  // if (found !== -1) {
+  //   users.splice(found, 1);
+  //   res.send('deleted.');
+  // }
+  // else
+  //   res.status(400).send(`There is no user with id: ${id}`);
 })
 /* END - create routes here */
 
