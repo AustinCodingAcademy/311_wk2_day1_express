@@ -7,6 +7,9 @@ const { users } = require('./state')
 
 /* BEGIN - create routes here */
 
+app.get('/users', (req, res) => {
+  res.json(users)
+})
 
 /* END - create routes here */
 
