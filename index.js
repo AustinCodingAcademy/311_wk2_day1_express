@@ -33,7 +33,7 @@ app.get('/users', (req, res) => {
 })
 
 app.put('/users/1', (req, res) => {
-  
+  name = req.body.name;
 })
 
 
