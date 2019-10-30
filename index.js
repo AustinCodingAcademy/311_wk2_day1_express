@@ -82,7 +82,7 @@ app.delete('/users/:userId', (req, res) => {
 
   //Create an if statement to return the user info if the ID is found, and an error if the ID is not found.
   if(found) {
-    users[deletedUserIndex]["isActive"] = "true"
+    users[deletedUserIndex]["isActive"] = "false"
     res.send(`User ${userIndex} was successfully deleted`)
 
   //  res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});res.send("deleted")
