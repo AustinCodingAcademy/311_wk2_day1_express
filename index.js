@@ -69,16 +69,26 @@ app.put('/users/:userId', (req, res) => {
 
   for (let i = 0; i < users.length; i++) {
     if (i + 1 === userIdent)  {
-      users._id = newUser._id ? newUser._id : users._id
-      users.name = newUser.name ? newUser.name : users.name
-      users.occupation = newUser.occupation ? newUser.occupation : users.occupation
-      users.avatar = newUser.avatar ? newUser.avatar : users.avatar
+      users[i]._id = newUser._id ? newUser._id : users[i]._id
+      users[i].name = newUser.name ? newUser.name : users[i].name
+      users[i].occupation = newUser.occupation ? newUser.occupation : users[i].occupation
+      users[i].avatar = newUser.avatar ? newUser.avatar : users[i].avatar
       res.json(users[userIndex])
     }    
   }
 })
 
-
+app.delete('/users/:userId', (req, res) => {
+  let userIdent = parseInt(req.params.userId)
+  let userIndex = parseInt(req.params.userId) - 1;
+  
+  for (let i = 0; i < users.length; i++) {
+    if (i + 1 === userIdent)  { 
+      users[userIndex]["isActive"] = "false"
+      res.send(`User ${userIdent} was successfully deleted`)
+    }
+  }
+})
 
 
 
