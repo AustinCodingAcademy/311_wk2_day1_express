@@ -32,6 +32,10 @@ app.get('/users', (req, res) => {
   res.json(users)
 })
 
+app.put('/users/1', (req, res) => {
+  
+})
+
 
 
 
