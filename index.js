@@ -1,9 +1,20 @@
 const express = require('express')
-const parser = require('body-parser')
+const bodyParser = require('body-parser')
+const uuid = require('uuid')
 const app = express()
 const port = process.env.PORT || 4000
 
+// Body Parser boilerplate
+const jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 const { users } = require('./state')
+
+// user length for id counter 
+let idNumBase = users.length + 1
+
+
+
 
 /* BEGIN - create routes here */
 
@@ -28,11 +39,16 @@ app.get('/users/:id', (req, res) => {
 //   res.json(happy);
 // });
 
-
-app.post('/users', (req, res) => {
-  newUser = req.body;
-  res.json(newUser);
-});
+app.post('/users', jsonParser, function (req, res) {
+  const newUser = {
+    _id: idNumBase++,
+    name: req.body.name,
+    email: req.body.occupation,
+    avatar: req.body.avatar
+  }
+  users.push(newUser);
+  res.json(users);
+})
 
 app.put('/users/:id', (req, res) => {
   users[0].occupation = "potter"
@@ -43,9 +59,6 @@ app.delete('/users/:id', (req, res) => {
   users.splice(0, 1);
   res.send('Deleted First User')
 })
-
-
-
 
 /* END - create routes here */
 
