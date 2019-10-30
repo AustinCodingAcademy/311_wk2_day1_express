@@ -19,6 +19,7 @@ app.get('/users', (req, res) => {
 })
 
 //GET method to get single user's information.
+
 app.get('/users/:userId', (req, res) => {
   userIdent = req.params.userId
   //Create a variable to determing if a userID is found.
@@ -59,9 +60,10 @@ app.put('/users/:userId', (req, res) => {
     const upUser = req.body
       users.forEach(user => {
         if(user._id === parseInt(req.params.userId)){
+          user._id = upUser._id ? upUser_id : user._id
           user.name = upUser.name ? upUser.name : user.name
           user.occupation = upUser.occupation ? upUser.occupation : user.occupation
-
+          user.avatar = upUser.avatar ? upUser.avatar : user.avatar
           res.json ({msg: `The user ${req.params.userId} was updated.`})
         }
       }) 
