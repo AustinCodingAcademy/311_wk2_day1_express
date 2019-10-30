@@ -35,9 +35,9 @@ Use Postman to test the routes created in the following sections. Your base url 
   * DELETE /users/1
     * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a messsage, "deleted" -->
 
-## Part 2. Body-parser module
+<!-- ## Part 2. Body-parser module
 
-* Require the `body-parser` module on the line below `require('express')`. (it has already been npm installed)
+* Require the `body-parser` module on the line below `require('express')`. (it has already been npm installed) -->
 
 * Give your server the ability to handle a POST request with a path "/users" and add the data from the client to the users array
 

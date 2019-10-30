@@ -1,4 +1,5 @@
 const express = require('express')
+const parser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -16,16 +17,21 @@ app.get('/users/:id', (req, res) => {
 });
 
 // Returns New Posted User
+// app.post('/users', (req, res) => {
+//   let happy = {
+//     "_id": 6,
+//     "name": 'Happy Gilmore',
+//     "occupation": 'Hockey Player',
+//     "avatar": 'https://www.imdb.com/title/tt0116483/mediaviewer/rm692033536' 
+//   };
+//   users.push(happy);
+//   res.json(happy);
+// });
+
+
 app.post('/users', (req, res) => {
-  const userId = req.params.id;
-  let happy = {
-    "_id": 6,
-    "name": 'Happy Gilmore',
-    "occupation": 'Hockey Player',
-    "avatar": 'https://www.imdb.com/title/tt0116483/mediaviewer/rm692033536' 
-  };
-  users.push(happy);
-  res.json(happy);
+  newUser = req.body;
+  res.json(newUser);
 });
 
 app.put('/users/:id', (req, res) => {
@@ -37,6 +43,7 @@ app.delete('/users/:id', (req, res) => {
   users.splice(0, 1);
   res.send('Deleted First User')
 })
+
 
 
 
