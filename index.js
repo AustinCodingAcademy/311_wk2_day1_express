@@ -19,14 +19,15 @@ app.get('/users', (req, res) => {
 })
 
 //GET method to get single user's information.
-app.get('/users/:id', (req, res) => {
+app.get('/users/:userId', (req, res) => {
+  userIdent = req.params.userId
   //Create a variable to determing if a userID is found.
-  const found = users.some(user => user._id === parseInt(req.params.id));
+  const found = users.some(user => user._id === parseInt(userIdent));
   //Create an if statement to return the user info if the ID is found, and an error if the ID is not found.
   if(found) {
-    res.json(users.filter(user => user._id === parseInt(req.params.id)));
+    res.json(users.filter(user => user._id === parseInt(userIdent)));
   } else {
-    res.status(400).json({msg: `User ${req.params.id} not found`})
+    res.status(400).json({msg: `User ${userIdent} not found`})
   }
 });
 //_________________________________________
@@ -51,42 +52,40 @@ app.post('/users', (req, res) => {
 
 
 //PUT Method - update a user
-app.put('/users/:id', (req, res) => {
-  const found = users.some(user =>user._id === parseInt(req.params.id))
+app.put('/users/:userId', (req, res) => {
+  const found = users.some(user =>user._id === parseInt(req.params.userId))
 
   if(found) {
     const upUser = req.body
       users.forEach(user => {
-        if(user._id === parseInt(req.params.id)){
+        if(user._id === parseInt(req.params.userId)){
           user.name = upUser.name ? upUser.name : user.name
           user.occupation = upUser.occupation ? upUser.occupation : user.occupation
 
-          res.json ({msg: `The user ${req.params.id} was updated.`})
+          res.json ({msg: `The user ${req.params.userId} was updated.`})
         }
       }) 
   }else{
-    res.status(400).json({msg: `No user with the id of ${req.params.id}`})}
+    res.status(400).json({msg: `No user with the id of ${req.params.userId}`})}
 })
 
 
 
 //DELETE Method
-app.delete('/users/:id', (req, res) => {
+app.delete('/users/:userId', (req, res) => {
   //Create a variable to determing if a userID is found.
-  const found = users.some(user => user._id === parseInt(req.params.id));
-  userIndex = parseInt(req.params.id);
+  const found = users.some(user => user._id === parseInt(req.params.userId));
+  userIndex = parseInt(req.params.userId);
   deletedUserIndex = userIndex -1;
-  
-  
-
 
   //Create an if statement to return the user info if the ID is found, and an error if the ID is not found.
   if(found) {
-    users[deletedUserIndex]["isActive"] = "false"
+    users[deletedUserIndex]["isActive"] = "true"
     res.send(`User ${userIndex} was successfully deleted`)
-    //  res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});res.send("deleted")
-    } else {
-    res.status(400).json({msg: `User ${req.params.id} not found`})
+
+  //  res.json({ msg: `User ${req.params.id} deleted`, users: users.filter(user => user._id !== parseInt(req.params.id))});res.send("deleted")
+  } else {
+    res.status(400).json({msg: `User ${req.params.userId} not found`})
   }
   
   console.log(deletedUserIndex)
