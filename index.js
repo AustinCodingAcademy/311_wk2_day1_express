@@ -51,15 +51,34 @@ app.delete('/users/1', (req, res) => {
 })
 
 app.get('/users/:userId', (req, res) => {
-  // let ifFound = null;
+  let userIdent = parseInt(req.params.userId)
   let userIndex = parseInt(req.params.userId) - 1;
   
   for (let i = 0; i < users.length; i++) {
-    if (users._id === parseInt(req.params.userId))  {
+    if (i + 1 === userIdent)  {
       res.json(users[userIndex])
     }   
   }
 })
+
+app.put('/users/:userId', (req, res) => {
+  let userIdent = parseInt(req.params.userId)
+  let userIndex = parseInt(req.params.userId) - 1;
+
+  let newUser = req.body
+
+  for (let i = 0; i < users.length; i++) {
+    if (i + 1 === userIdent)  {
+      users._id = newUser._id ? newUser._id : users._id
+      users.name = newUser.name ? newUser.name : users.name
+      users.occupation = newUser.occupation ? newUser.occupation : users.occupation
+      users.avatar = newUser.avatar ? newUser.avatar : users.avatar
+      res.json(users[userIndex])
+    }    
+  }
+})
+
+
 
 
 
