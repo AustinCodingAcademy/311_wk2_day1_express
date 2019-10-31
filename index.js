@@ -6,7 +6,7 @@ const port = process.env.PORT || 4000;
 
 // Body Parser boilerplate
 const jsonParser = bodyParser.json();
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const { users } = require("./state");
 
@@ -60,10 +60,21 @@ app.put("/users/:id", jsonParser, (req, res) => {
     res.json(uniqueUser);
   });
 
-app.delete("/users/:id", (req, res) => {
-  users.splice(0, 1);
-  res.send("Deleted First User");
-});
+// app.delete("/users/:id", (req, res) => {
+//   users.splice(0, 1);
+//   res.send("Deleted First User");
+// });
+
+app.delete('/users/:id', (req, res) => {
+  const userId = parseInt(req.params.id);
+  const uniqueUser = users.find(user => user._id === userId);
+  // console.log(userId, uniqueUser);
+
+  uniqueUser.isActive = false;
+  res.send('deleted')
+  // res.json(users);
+}); 
+
 
 /* END - create routes here */
 
