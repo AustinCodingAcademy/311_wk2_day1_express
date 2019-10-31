@@ -13,9 +13,6 @@ const { users } = require('./state')
 // user length for id counter 
 let idNumBase = users.length + 1
 
-
-
-
 /* BEGIN - create routes here */
 
 // All Users
@@ -23,8 +20,9 @@ app.get('/users', (req, res) => res.json(users));
 
 // Users based on ID
 app.get('/users/:id', (req, res) => {
-  const userId = req.params.id;
-  res.json(users[userId - 1]);
+  const userId = parseInt(req.params.id);
+  // res.json(users[userId - 1]);
+  res.json(users.find(user => user._id === userId))
 });
 
 // Returns New Posted User
@@ -40,6 +38,7 @@ app.get('/users/:id', (req, res) => {
 // });
 
 app.post('/users', jsonParser, function (req, res) {
+   
   const newUser = {
     _id: idNumBase++,
     name: req.body.name,
@@ -50,9 +49,17 @@ app.post('/users', jsonParser, function (req, res) {
   res.json(users);
 })
 
-app.put('/users/:id', (req, res) => {
-  users[0].occupation = "potter"
-  res.json(users[0]);
+app.put('/users/:id', jsonParser, (req, res) => {
+  const userId = parseInt(req.params.id);
+  const changeUser = {
+    _id: req.body.id,
+    name: req.body.name,
+    email: req.body.occupation,
+    avatar: req.body.avatar
+  }
+  
+  res.json(users.find(user => user._id === userId))
+  // res.json(users);
 });
 
 app.delete('/users/:id', (req, res) => {
