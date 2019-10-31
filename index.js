@@ -25,10 +25,14 @@ app.get('/users/:id', (req, res) => {
 /* Increments the number of users */
 app.post('/users', (req, res) => {
    users.push({
-    "_id": counter + 1,
-    "name": "John Smith",
-    "occupation": "Laborer",
-    "avatar": "https://www.sideshow.com/wp/wp-content/uploads/2017/10/a-nightmare-on-elm-street-freddy-krueger-premium-format-feature-300366-740x448.jpg"
+    // "_id": counter + 1,
+    // "name": "John Smith",
+    // "occupation": "Laborer",
+    // "avatar": "https://www.sideshow.com/wp/wp-content/uploads/2017/10/a-nightmare-on-elm-street-freddy-krueger-premium-format-feature-300366-740x448.jpg"
+    "_id": counter+1,
+    "name": req.body.name,
+    "occupation": req.body.occupation,
+    "avatar": req.body.avatar
   })
   counter++;
 })
