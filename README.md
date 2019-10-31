@@ -30,10 +30,10 @@ Use Postman to test the routes created in the following sections. Your base url 
     * You will need to create the hard coded user mentioned above
 
   * PUT /users/1
-    * Give your server the ability to respond to a PUT request with a path "/users/1" and just change any key value (ex. name, occupation) on the first user object in the users array in state.js. Use `res.json()` to send this user back to the client.
+    * Give your server the ability to respond to a PUT request with a path "/users/1" and just change any key value (ex. name, occupation) on the first user object in the users array in state.js. Use `res.json()` to send this user back to the client. 
 
   * DELETE /users/1
-    * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a messsage, "deleted"
+    * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a messsage, "deleted" 
 
 ## Part 2. Body-parser module
 
