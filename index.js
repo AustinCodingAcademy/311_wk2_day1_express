@@ -46,6 +46,7 @@ app.put('/users/:id', (req, res) => {
       if (user._id === parseInt(req.params.id)) {
         user.name = updateUser.name ? updateUser.name : user.name;
         user.occupation = updateUser.occupation ? updateUser.occupation : user.occupation;
+        user.avatar = updateUser.avatar ? updateUser.avatar : user.avatar;
 
         res.json({ msg: "User updated successfully", user });
       }
