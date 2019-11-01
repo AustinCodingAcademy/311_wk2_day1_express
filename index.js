@@ -22,7 +22,6 @@ app.get('/users/:id', (req, res) => {
   res.json(user)
 })
 
-
 // Route to make a post
 app.post('/users', (req, res) => {
   const newUser = {
@@ -38,17 +37,38 @@ app.post('/users', (req, res) => {
 
 // Update user
 app.put('/users/:id', (req, res) => {
-  let user = users.find(user => user._id === parseInt(req.params.id))
-  const updateUser = req.body;
-  users.user.id;
+  
+  const found = users.some(user => user._id === parseInt(req.params.id));
+  
+  if (found) {
+    const updateUser = req.body;
+    users.forEach(user => {
+      if (user._id === parseInt(req.params.id)) {
+        user.name = updateUser.name ? updateUser.name : user.name;
+        user.occupation = updateUser.occupation ? updateUser.occupation : user.occupation;
+
+        res.json({ msg: "User updated successfully", user });
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `No User with id of ${req.params.id}` });
+  }
 })
 
 
 // Delete user
 app.delete('/users/:id', (req, res) => {
-  let user = users.find(user => user._id === parseInt(req.params.id))
-  res.send('User Deleted')
-  res.json(users)
+  const found = users.some(user => user._id === parseInt(req.params.id));
+
+  if (found){
+    let user = users.find(user => user._id === parseInt(req.params.id))
+    console.log(user)
+    user.isActive = false;
+    res.json({
+      Message: 'User Deleted',
+      user
+    })
+  }
 })
 
 
