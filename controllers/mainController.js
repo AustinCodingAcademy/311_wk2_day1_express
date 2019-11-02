@@ -1,14 +1,18 @@
+// allows access to data file
 const { users } = require("../state");
 
+// gets all users
 function user(req, res) {
   return res.json(users);
 }
 
+// gets single user
 function singleUser(req, res) {
   let user = users.find(user => user._id === parseInt(req.params.id));
   return res.json(user);
 }
 
+// creates new user
 function userPost(req, res) {
   const newUser = {
     _id: req.body._id,
@@ -20,6 +24,7 @@ function userPost(req, res) {
   res.json(users);
 }
 
+// updates user
 function putUser(req, res) {
   const found = users.some(user => user._id === parseInt(req.params.id));
 
@@ -39,6 +44,7 @@ function putUser(req, res) {
   }
 }
 
+// deletes user
 function deleteUser(req, res) {
   const found = users.some(user => user._id === parseInt(req.params.id));
 
@@ -52,4 +58,5 @@ function deleteUser(req, res) {
   }
 }
 
+// exports functions/methods to be used in another file
 module.exports = { user, singleUser, userPost, putUser, deleteUser};

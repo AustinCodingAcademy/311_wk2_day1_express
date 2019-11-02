@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+// gets access to controller functions/methods
 const controller = require('../controllers/mainController')
-
-
 
 // Route to get all users
 router.get('/users', controller.user)
