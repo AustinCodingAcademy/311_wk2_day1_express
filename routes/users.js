@@ -56,7 +56,6 @@ router.delete('/users/:id', (req, res) => {
 
   if (found){
     let user = users.find(user => user._id === parseInt(req.params.id))
-    console.log(user)
     user.isActive = false;
     res.json({
       Message: 'User Deleted',
