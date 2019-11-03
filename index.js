@@ -1,14 +1,20 @@
+const express = require('express');
 
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 4000
+//set up express app
+const app = express();
 
-const { users } = require('./state')
+// Enable body parser for application/json
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+
 
 /* BEGIN - create routes here */
 
+const routes = require('./routes/users')
+app.use(routes)
 
 /* END - create routes here */
+const port = process.env.PORT || 4000;
 
-app.listen(port, () => 
+app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`))
