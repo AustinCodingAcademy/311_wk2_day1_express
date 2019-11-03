@@ -52,20 +52,47 @@ counter = counter+1
 })
 
 // 4 // - put
-app.put('/users/:userId', (req,res) => {
-  const foundId = users.some(user => user._id === parseInt(req.params.userId))
-
-  if(foundId) {
-    const 
+app.put('/users/:userId', (req, res) => {
+  const them = users.some(user =>user._id === parseInt(req.params.userId))
+  
+  if(them) {
+  const findUser = req.body
+  users.forEach(user => {
+  if(user._id === parseInt(req.params.userId)){
+  user._id = findUser._id ? findUser_id : user._id
+  user.name = findUser.name ? findUser.name : user.name
+  user.occupation = findUser.occupation ? findUser.occupation : user.occupation
+  user.avatar = findUser.avatar ? findUser.avatar : user.avatar
+  res.json (`${req.params.userId} was updated.`)
   }
-})
+  })
+  }else{
+  res.status(400).json(`${req.params.userId} is not a user`)}
+  })
+  
 // 5 // - delete
 
-app.delete('/users/:userId', (req,res) => {
+app.delete('/users/:userId', (req, res) => {
 
-})
+  const found = users.some(user => user._id === parseInt(req.params.userId));
+  userIndex = parseInt(req.params.userId);
+  deletedUserIndex = userIndex -1;
+  
 
-/* END - create routes here */
+  if(found) {
+  users[deletedUserIndex]["isActive"] = "false"
+  res.send(`${userIndex} was successfully deleted`)
+  
+  } else {
+  res.status(400).json(`${req.params.userId} not found`)
+  }
+  
+  console.log(deletedUserIndex)
+  console.log(userIndex)
+  console.log(users)
+  });
+  
+  / END - create routes here /
 
 app.listen(port, () => 
   console.log(`Example app listening on port ${port}!`))
