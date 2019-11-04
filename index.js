@@ -14,8 +14,6 @@ app.use(express.urlencoded());
 app.use(jsonParser);
 
 const connection = mysql.createConnection(
-  // 'mysql://artfrog:myFrogg3r!@localhost/test_db'
-  // OR an object:
   {
     user: 'test',
     password: 'password',
