@@ -1,11 +1,51 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
+const mysql = require('mysql');
+
 const port = process.env.PORT || 4000;
 
 const { users } = require("./state");
-const jsonParser = bodyParser.json();
+const jsonParser = express.json();
 let count = users.length + 1;
+
+app.use(express.static('public'));
+app.use(express.urlencoded());
+app.use(jsonParser);
+
+const connection = mysql.createConnection(
+  // 'mysql://artfrog:myFrogg3r!@localhost/test_db'
+  // OR an object:
+  {
+    user: 'test',
+    password: 'password',
+    database: 'testdb'
+  });
+
+
+
+connection.connect(function (err) {
+  if (err) {
+    console.log('********** ERROR CONNECTING *************');
+    throw err;
+  }
+  console.log('connected..');
+})
+
+app.post('/teacher', (req, res) => {
+  let sql = `INSERT INTO teachers (first_name, last_name) VALUES ('${req.body.first}', '${req.body.last}');`;
+  console.log(req.body);
+
+  connection.query(sql, (err) => {
+    if (err) {
+      console.log('********** ERROR REQUESTING *************');
+      throw err;
+    }
+    res.send('success');
+  })
+  connection.end();
+})
+
 
 /* BEGIN - create routes here */
 // Get all users
