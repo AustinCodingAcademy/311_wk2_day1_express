@@ -54,7 +54,7 @@ Use Postman to test the routes created in the following sections. Your base url 
 
   * GET /users/1 => GET /users/:userId
     * Give your server the ability to respond to a GET request with a path `/users/:userId` and return the user object from the users array that has the _id == userId
-
+ 
   * PUT /users/1 => PUT /users/:userId
     * Give your server the ability to respond to a PUT request with a path `/users/:userId` and just change any key value on the user object with this _id 
 
