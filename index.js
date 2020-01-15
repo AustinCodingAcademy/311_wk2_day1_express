@@ -6,6 +6,7 @@ const app = express()
 const port = process.env.PORT || 4000
 
 const { users } = require('./state');
+let idCounter = users.length;
 
 app.use(express.json());
 app.use(express.urlencoded({extend: false}));
@@ -34,11 +35,13 @@ app.get('/users', (request, response)=>{
     // response.send(newUser);
 
     console.log(request.body);
-    response.send(request.body);
-
+    // response.send(request.body);
     // console.log(request.body);
-    // const newUser = request.body;
-    // response.json(newUser);
+    const newUser = request.body;
+    idCounter++
+    newUser._id = idCounter;
+    users.push(newUser);
+    response.json(newUser);
   })
 
   app.put('/users/1', (request, response) => {
