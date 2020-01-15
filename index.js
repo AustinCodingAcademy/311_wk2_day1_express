@@ -30,6 +30,18 @@ const newUser = {
     response.send(newUser);
   })
 
+  app.put('/users/1', (request, response) => {
+    let user = users[0];
+    user.name = 'Pat White'
+    user.occupation = 'Full Stack Developer'
+    response.json(user);
+  })
+
+  app.delete('/users/1', (request, response) => {
+    users.shift();
+    response.send('deleted');
+  })
+
 /* END - create routes here */
 
 app.listen(port, () => 
