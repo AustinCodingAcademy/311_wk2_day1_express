@@ -39,16 +39,24 @@ app.get('/users/:id', (request, response)=> {
     response.json(newUser);
   })
 
-  app.put('/users/1', (request, response) => {
-    let user = users[0];
+  app.put('/users/:userId', (request, response) => {
+    let id = request.params.userId;
+    let user = users.filter(user => user._id === parseInt(id))[0];
+    // let body = request.body;
+    // for (let property of body) {
+    //   user[property] = body[property]
+    // }
+    console.log(user)
     user.name = 'Pat White'
     user.occupation = 'Full Stack Developer'
     response.json(user);
   })
 
-  app.delete('/users/1', (request, response) => {
-    users.shift();
-    response.send('deleted');
+  app.delete('/users/:userId', (request, response) => {
+    const id = request.params.userId;
+    const userIndex = users.findIndex(user => user._id === parseInt(id));
+    const deletedUser = users.splice(userIndex, 1);
+    response.send(deletedUser);
   })
 
 /* END - create routes here */
