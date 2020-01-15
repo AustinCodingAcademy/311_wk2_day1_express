@@ -6,6 +6,10 @@ const port = process.env.PORT || 4000
 const { users } = require('./state')
 
 /* BEGIN - create routes here */
+app.get
+app.post //push
+app.put //
+app.delete //pop
 
 
 /* END - create routes here */
