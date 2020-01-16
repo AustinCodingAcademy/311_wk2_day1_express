@@ -13,9 +13,26 @@ app.get('/users/1', (request, response) => {
 })
 
 app.post('/users', (request, response) => {
-  // Hmmmm
-  request.body = 'heyoo';
-  console.log(users)
+  request = {
+    "_id": 6,
+    "name": "Tiny Dinky Daffy",
+    "occupation": "Baby",
+    "avatar": "https://thetinydinkster.jpg"
+  }
+  users.push(request);
+  return response.json(users);
+})
+
+app.put('/users/1', (request, response) => {
+  request = 'Bart Harley Jarvis';
+  users[0].name = request;
+  return response.json(users[0]);
+})
+
+app.delete('/users/1', (request, response) => {
+  request.body = 1;
+  users.shift();
+  response.send(`User ${request.body} deleted`);
 })
 
 /* END - create routes here */
