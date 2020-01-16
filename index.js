@@ -61,7 +61,7 @@ app.delete('/users/:userId', (request, response) => {
   let userId = request.params.userId;
   user = users.find(x => x._id === parseInt(userId));
   user.isActive = false;
-  return response.json(`User ${userId} deleted`);
+  return response.send(`User ${userId} deleted`);
 })
 
 /* END - create routes here */
