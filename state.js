@@ -28,5 +28,11 @@ exports.users = [
         "name": "Dana Scully",
         "occupation": "FBI Agent",
         "avatar": "https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"
+    },
+    {
+        "_id": 6,
+        "name": "Chocolate Cookie",
+        "occupation": "Happiness",
+        "avatar": "http://www.subway41314.co.uk/shop/images/subway-cookies.jpg"
     }
 ]
