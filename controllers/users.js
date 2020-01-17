@@ -15,6 +15,11 @@ const users_by_id = (req, res) => {
   } 
  }
 
+ //let the theIdImLookingFor = req.params.userId;
+// console.log(theIdImLookingfor);
+//THe variables are up for you
+//let users = users.find(u=>u._id == theIdImLookingfor)
+
 const post_user = (req, res) => {
   const newUser = {
     _id: counter += 1,
