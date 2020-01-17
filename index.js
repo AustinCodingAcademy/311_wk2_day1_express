@@ -5,6 +5,8 @@ const port = process.env.PORT || 4000
 
 const { users } = require('./state')
 
+// Part 1
+
 app.get('/users', (request, response) => {
   return response.json(users);
 })
@@ -36,6 +38,8 @@ app.delete('/users/1', (request, response) => {
   response.send(`User ${request.body} deleted`);
 })
 
+// Part 2
+
 app.use(bodyParser.json());
 
 app.post('/users', (request, response) => {
@@ -44,6 +48,8 @@ app.post('/users', (request, response) => {
   users.push(request.body);
   return response.json(users[users.length - 1]);
 })
+
+// Part 3
 
 app.get('/users/:userId', (request, response) => {
   let userId = request.params.userId;
@@ -63,8 +69,6 @@ app.delete('/users/:userId', (request, response) => {
   user.isActive = false;
   return response.send(`User ${userId} deleted`);
 })
-
-/* END - create routes here */
 
 app.listen(port, () => 
   console.log(`Example app listening on port ${port}!`))
