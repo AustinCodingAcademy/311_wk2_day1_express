@@ -3,8 +3,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
+app.use(bodyParser.json());
 
 const { users } = require('./state')
+let counter = users.length;
 
 /* BEGIN - create routes here */
 // app.use((req, res, next) => {
@@ -18,11 +20,11 @@ app.get('/users/1',(req, res)  => {
 })
 
 app.post('/users', (req, res) => {
-  const usersLengthBefore = users.length;
+  counter++;
   users.push({
-    "_id": usersLengthBefore + 1,
-    "name": `Hardcoded - user ${usersLengthBefore + 1}`,
-    "occupation": `Hardcoded - user ${usersLengthBefore + 1}`,
+    "_id": counter,
+    "name": `Hardcoded - user ${counter}`,
+    "occupation": `Hardcoded - user ${counter}`,
     "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
   })
   return res.json(users[users.length -1]);
@@ -38,17 +40,22 @@ app.delete('/users/1', (req, res) => {
   return res.send('deleted');
 })
 
+//part 2 # 1
+
+app.post('/users', (req, res) => {
+  counter++;
+  const newUser = req.body;
+  newUser._id = counter;
+  users.push(newUser);
+  res.json(newUser);
+});
+
 
 //part 3 # 1
 app.get('/users/:_id', (req, res) => {
-  return res.json(users.filter(users => users._id === parseInt(req.params._id)));
+  return res.json(users.find(users => users._id === parseInt(req.params._id)));
 })
 
-// using variables as id
-// app.get("/users/:userId", (req, res) => {
-//   let theIdImLookingFor = req.params.userId;
-//   console.log(theIdImLookingFor);
-// }
 
 app.put('/users/:userId', (req, res) => {
   let userId = req.params.userId;
@@ -59,9 +66,16 @@ app.put('/users/:userId', (req, res) => {
   return res.json(currentUser);
 })
 
-
+app.delete('/users/:userId', (req, res) => {
+  let userId = req.params.userId;
+  let currentUser = users.find(function (user) {
+    return user._id == userId;
+  })
+  currentUser.isActive = "false";
+  res.send("deleted");
+})
 
 /* END - create routes here */
-
-app.listen(4000, () => 
-  console.log(`Example app listening on port ${port}!`))
+app.listen(4000, () => {
+  console.log(`Example app listening on port ${port}!`)
+})
