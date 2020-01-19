@@ -28,5 +28,11 @@ exports.users = [
         "name": "Dana Scully",
         "occupation": "FBI Agent",
         "avatar": "https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"
+    },
+    {
+        "_id": 6,
+        "name": "Jean-Luc Picard",
+        "occupation": "captain of USS Enterprise",
+        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4m9Q70KoiVUoVoT_4EuTNel5or9Z8czI6m9DfXAH0LG3h4QDS&s"
     }
 ]
