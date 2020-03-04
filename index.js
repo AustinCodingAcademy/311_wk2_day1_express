@@ -6,16 +6,16 @@ const port = process.env.PORT || 4000;
 app.use(bodyParser.json());
 
 const { users } = require("./state");
-let counter = users.length + 1;
+let counter = users.length;
 
 /* BEGIN - create routes here */
 //---------------------------------------
 
 //Part 1
 //get users
-// app.get("/users", (req, res) => {
-//   res.json(users);
-// });
+app.get("/users", (req, res) => {
+  res.json(users);
+});
 
 //get users/1
 app.get("/users/1", (req, res) => {
@@ -51,11 +51,13 @@ app.delete("/users/1", (req, res) => {
 //Part 2
 
 app.post("/users", (req, res) => {
-  users.push(req.body);
-  users[users.length - 1]._id = counter;
-  counter++;
-  res.json(users);
   console.log(req.body);
+  let newUser = {
+    ...req.body,
+    _id: counter + 1
+  };
+  users.push(newUser);
+  res.json(users);
 });
 
 //-------------------------------
