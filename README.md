@@ -21,19 +21,31 @@ Use Postman to test the routes created in the following sections. Your base url 
     * Give your server the ability to respond to a GET request with a path "/users" and return the users array from state.js
     * Ex. `res.json(users)`
 
+        DONE
+
   * GET /users/1
     * Give your server the ability to respond to a GET request with a path "/users/1" and return the first user object from the users array from state.js
+
+        DONE
 
   * POST /users
     * Give your server the ability to respond to a POST request with a path "/users" and add a hard coded user object to the users array from state.js. Use `res.json()` to send the last user in the array (should be the new one) back to the client.
     * If you do another GET request you should see this added
     * You will need to create the hard coded user mentioned above
 
+        DONE
+
   * PUT /users/1
     * Give your server the ability to respond to a PUT request with a path "/users/1" and just change any key value (ex. name, occupation) on the first user object in the users array in state.js. Use `res.json()` to send this user back to the client.
 
+        DONE
+
   * DELETE /users/1
     * Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array. Use `res.send()` to send back a messsage, "deleted"
+
+        DONE
+
+  Hooray!
 
 ## Part 2. Body-parser module
 
