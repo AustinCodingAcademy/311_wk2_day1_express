@@ -15,7 +15,7 @@ const { users } = require('./state')
 app.get('/users/', (req, res) => {
   
   // send the client all the members in the array
-  res.send(res.json(users));
+  res.json(users);
 })
 
 // this is the GET method to return a single user
@@ -33,7 +33,7 @@ app.get('/users/:id', (req, res) => {
     reqUser = user
   })
   // send the client the user data back to show it worked
-  res.send(res.json(reqUser))
+  res.json(reqUser)
 })
 
 app.post('/users/', (req, res) => {
