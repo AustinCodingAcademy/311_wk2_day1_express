@@ -1,11 +1,17 @@
 
 const express = require('express')
+const bodyParser = require('body-parser');
 const app = express()
 const port = process.env.PORT || 4000
 
 const { users } = require('./state')
+let counter = users.length;
+console.log(counter);
 
 /* BEGIN - create routes here */
+
+
+// ###### PART 1: BASIC ROUTES ######
 
 app.get('/', (req, res) => {
   res.send("Hello World");
@@ -51,8 +57,22 @@ app.put("/users/:id", (req, res) => {
 app.delete("/users/:id", (req, res) => {
   let id = req.params.id -1;
   users.splice(id, 1);
-  res.send('deleted');
+  res.json('deleted');
 })
+
+
+// ###### PART 2: BODY PARSER MODULE ######
+
+app.use(bodyParser.json())
+
+// Handle post request for path 'users', and add
+// the data from the client to the user array
+//
+// app.post('/users', (req, res) => {
+//   req.body._id = counter+1;
+//   users.push(req.body);
+//   res.json(users[counter]);
+// })
 
 /* END - create routes here */
 
