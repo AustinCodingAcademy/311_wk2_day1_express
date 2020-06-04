@@ -58,7 +58,6 @@ app.delete("/users/:id", (req, res) => {
   let id = req.params.id -1;
   users.splice(id, 1);
   users[id].isActive = "false";
-  res.json(users[id]);
   res.send('deleted');
 })
 
