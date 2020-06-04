@@ -28,5 +28,11 @@ exports.users = [
         "name": "Dana Scully",
         "occupation": "FBI Agent",
         "avatar": "https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"
+    },
+    {
+        "_id": 6,
+        "name": "Rick Deckard",
+        "occupation": "Blade Runner",
+        "avatar": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Rick_Deckard.jpg/220px-Rick_Deckard.jpg"
     }
 ]
