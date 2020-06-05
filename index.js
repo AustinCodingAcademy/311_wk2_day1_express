@@ -9,6 +9,7 @@ const { users } = require('./state')
 //Body Parser Middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 /* BEGIN - create routes here */
 
@@ -26,48 +27,43 @@ app.get('/users/1', (req, res) => {
 
 //POST - Add New User
 app.post('/users', (req, res) => {
-users.push({"_id": "6","name":"Dana Scully","occupation":"FBI Agent","avatar":"https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"})
-res.json(users)
-})
+  users.push({"_id": "6","name":"Dana Scully","occupation":"FBI Agent","avatar":"https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"})
+  res.json(users)
+  })
  
 // PUT - Update User
-app.put('/users', (req, res) => {
-  const newUser = {
-    _id: req.body._id,
-    name: req.body.name,
-    occupation: req.body.occupation,
-    avatar: req.body.avatar 
-  }
-
-  users.push(newUser)
-  res.json(users)
+app.put("/users/1", (req, res) => {
+  users[0].occupation = "Special Agent";
+  res.json(users[0]);
+  });
 
 //  DELETE - Delete User
-app.delete('/users/1', (req, res) => {
-    let id = req.params.id -1
-    users.splice(id, 1)
-    users[id].isActive = "false"
-    res.send('deleted')
-})
+app.delete("/users/1", (req, res) => {
+    users.shift();
+    res.send("User Deleted");
+  });
 
 //BODY-PARSER MODULE
 
-app.use(bodyParser.json())
-
-let counter = 0
-
 app.post('/users', (req, res) => {
-  req.body._id = counter++
-  users.push(req.body)
-  res.json(users[counter])
-})
-//Get User - GET PV
+  const newUser = {
+  id: req.body.id,
+  name: req.body.name,
+  occupation: req.body.occupation,
+  avatar: req.body.avatar
+  }
+  
+  users.push(newUser)
+  res.json(users)
+  
+  })
+// //Get User - GET PV
 app.get('/users/:userId', (req, res) => {
   let getId = users.filter(user => user._id === parseInt(req.params.userId))
   res.json(getId)
 })
 
-//Update user - PUT PV
+// //Update user - PUT PV
 app.put('/users/:userId', (req, res) => {
   const found = users.some(user => user._id === parseInt(req.params.userId))
   
@@ -85,7 +81,7 @@ app.put('/users/:userId', (req, res) => {
   }
 })
 
-//Delete User - Delete PV
+// //Delete User - Delete PV
 app.delete('/users/:userId', (req, res) => {
   const found = users.some(user => user._id === parseInt(req.params.userId))
 
