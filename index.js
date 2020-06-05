@@ -62,39 +62,39 @@ app.post('/users', (req, res) => {
   res.json(users[counter])
 })
 //Get User - GET PV
-// app.get('/users/:userId', (req, res) => {
-//   let getId = users.filter(user => user._id === parseInt(req.params.userId))
-//   res.json(getId)
-// })
+app.get('/users/:userId', (req, res) => {
+  let getId = users.filter(user => user._id === parseInt(req.params.userId))
+  res.json(getId)
+})
 
 //Update user - PUT PV
-// app.put('/users/:userId', (req, res) => {
-//   const found = users.some(user => user._id === parseInt(req.params.userId))
+app.put('/users/:userId', (req, res) => {
+  const found = users.some(user => user._id === parseInt(req.params.userId))
   
-//   if (found) {
-//       const updUsers = req.body
-//       users.forEach(user => {
-//         if(user._id === parseInt(req.params.userId)) {
-//           user.name = updUsers.name
+  if (found) {
+      const updUsers = req.body
+      users.forEach(user => {
+        if(user._id === parseInt(req.params.userId)) {
+          user.name = updUsers.name
 
-//           res.json({msg : 'Member Updated', user})
-//         }
-//       })
-//   } else {
-//     res.status(400).json({msg: `No member with that id of ${req.params.id}`})
-//   }
-// })
+          res.json({msg : 'Member Updated', user})
+        }
+      })
+  } else {
+    res.status(400).json({msg: `No member with that id of ${req.params.id}`})
+  }
+})
 
 //Delete User - Delete PV
-// app.delete('/users/:userId', (req, res) => {
-//   const found = users.some(user => user._id === parseInt(req.params.userId))
+app.delete('/users/:userId', (req, res) => {
+  const found = users.some(user => user._id === parseInt(req.params.userId))
 
-//   if (found) {
-//     res.json(users.filter(user => user._id !== parseInt(req.params.userId)))
-//   } else {
-//     res.status(400).json({msg : `No member with the id of ${req.params.id}`})
-//   }
-// })
+  if (found) {
+    res.json(users.filter(user => user._id !== parseInt(req.params.userId)))
+  } else {
+    res.status(400).json({msg : `No member with the id of ${req.params.id}`})
+  }
+})
 
 
 /* END - create routes here */
