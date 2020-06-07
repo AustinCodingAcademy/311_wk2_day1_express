@@ -21,41 +21,41 @@ app.get("/users", (req, res) => {
 
 // ---------------
 
-// // GET /users/1:
-// app.get("/users/1", (req, res) => {
-//   res.json(users[0]);
-// });
+// GET /users/1:
+app.get("/users/1", (req, res) => {
+  res.json(users[0]);
+});
 
 // ---------------
 
 // POST /users:
-// app.post("/users", (req, res) => {
-//   users.push({
-//     _id: 6,
-//     name: "John Dillinger",
-//     occupation: "Bank Robber",
-//     avatar:
-//       "https://en.wikipedia.org/wiki/John_Dillinger#/media/File:John_Dillinger_mug_shot.jpg",
-//   });
-//   res.json(users[5]);
-// });
+app.post("/users", (req, res) => {
+  users.push({
+    _id: 6,
+    name: "John Dillinger",
+    occupation: "Bank Robber",
+    avatar:
+      "https://en.wikipedia.org/wiki/John_Dillinger#/media/File:John_Dillinger_mug_shot.jpg",
+  });
+  res.json(users[5]);
+});
 
 // ---------------
 
-// // // PUT /users/1:
-// app.put("/users/1", (req, res) => {
-//   users[0].occupation = "Special Agent";
-//   res.json(users[0]);
-//   res.send({ msg: "Success, user updated!" });
-// });
+// PUT /users/1:
+app.put("/users/1", (req, res) => {
+  users[0].occupation = "Special Agent";
+  res.json(users[0]);
+  res.send({ msg: "Success, user updated!" });
+});
 
 // ---------------
 
 // DELETE /users/1
-// app.delete("/users/1", (req, res) => {
-//   users.shift();
-//   res.send({ msg: "User Deleted!" });
-// });
+app.delete("/users/1", (req, res) => {
+  users.shift();
+  res.send({ msg: "User Deleted!" });
+});
 
 // ---------------
 
