@@ -46,13 +46,9 @@ app.delete("/users/1", (req, res) => {
 //BODY-PARSER MODULE
 
 app.post('/users', (req, res) => {
-  const newUser = {
-  id: req.body.id,
-  name: req.body.name,
-  occupation: req.body.occupation,
-  avatar: req.body.avatar
-  }
-  
+  let counter = users.length + 1
+  const newUser = req.body
+  newUser._id = counter
   users.push(newUser)
   res.json(users)
   
