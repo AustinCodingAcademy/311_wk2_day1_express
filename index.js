@@ -45,8 +45,7 @@ app.post("/users", (req, res) => {
 // PUT /users/1:
 app.put("/users/1", (req, res) => {
   users[0].occupation = "Special Agent";
-  res.json(users[0]);
-  res.send({ msg: "Success, user updated!" });
+  res.json({ msg: "Success, user updated!", user: users[0] });
 });
 
 // ---------------
