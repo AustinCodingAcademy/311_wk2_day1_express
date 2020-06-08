@@ -1,7 +1,7 @@
 exports.users = [
     {
         "_id": 1,
-        "name": "Dale Cooper",
+        "name": "Adam Thomas",
         "occupation": "FBI Agent",
         "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
     },
@@ -29,4 +29,5 @@ exports.users = [
         "occupation": "FBI Agent",
         "avatar": "https://pbs.twimg.com/profile_images/718881904834056192/WnMTb__R.jpg"
     }
+    
 ]
