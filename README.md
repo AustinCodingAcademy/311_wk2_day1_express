@@ -19,7 +19,7 @@ Use Postman to test the routes created in the following sections. Your base url 
 
   * GET /users
     * Give your server the ability to respond to a GET request with a path "/users" and return the users array from state.js
-    * Ex. `res.json(users)`
+    * Ex. `res.json(users)` 
 
   * GET /users/1
     * Give your server the ability to respond to a GET request with a path "/users/1" and return the first user object from the users array from state.js
@@ -27,7 +27,7 @@ Use Postman to test the routes created in the following sections. Your base url 
   * POST /users
     * Give your server the ability to respond to a POST request with a path "/users" and add a hard coded user object to the users array from state.js. Use `res.json()` to send the last user in the array (should be the new one) back to the client.
     * If you do another GET request you should see this added
-    * You will need to create the hard coded user mentioned above
+    * You will need to create the hard coded user mentioned above 
 
   * PUT /users/1
     * Give your server the ability to respond to a PUT request with a path "/users/1" and just change any key value (ex. name, occupation) on the first user object in the users array in state.js. Use `res.json()` to send this user back to the client.
@@ -45,7 +45,9 @@ Use Postman to test the routes created in the following sections. Your base url 
 
   * Assign an _id property to the user object that is a number that increments by 1 each time.
     * To do this, set a variable called counter near the `{ users }` variable. Start it at the length of the users array
-
+//for(let i = users.length; i > users.length; i++){
+  increment the id property
+}
   * Use `res.json()` to send the user object back to the client. (if you do another GET request you should see this added)
 
 ## Part 3. Use path variables
@@ -54,7 +56,7 @@ Use Postman to test the routes created in the following sections. Your base url 
 
   * GET /users/1 => GET /users/:userId
     * Give your server the ability to respond to a GET request with a path `/users/:userId` and return the user object from the users array that has the _id == userId
-
+    
   * PUT /users/1 => PUT /users/:userId
     * Give your server the ability to respond to a PUT request with a path `/users/:userId` and just change any key value on the user object with this _id 
 
