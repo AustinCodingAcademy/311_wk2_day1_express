@@ -34,7 +34,7 @@ app.post('/users', (req, res) => {
 })
 
 app.put('/users/:usersId', (req, res) => {
-  let foundUser = (users.filer( user => user._id === parseInt(req.params.userId))
+  let foundUser = (users.filter( user => user._id === parseInt(req.params.userId))
 )
 let user = foundUser[0]
 user[0].name = req.body.name ? req.body.name : user.name
