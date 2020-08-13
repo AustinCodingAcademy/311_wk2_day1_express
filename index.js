@@ -45,7 +45,7 @@ res.json(user)
 })
 
 app.delete('users5', (req, res) =>{
-   let foundUser = (users.filer( user => user._id === parseInt(req.params.userId))
+   let foundUser = (users.filter( user => user._id === parseInt(req.params.userId))
 )
  let user = foundUser[0]
  if (user) {
