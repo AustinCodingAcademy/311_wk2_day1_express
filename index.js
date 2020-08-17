@@ -26,7 +26,7 @@ app.post('/users',(req,res)=> {
 users.push(newUser)
 res.send(newUser)
 })
-app.delete('/users:idi',(req,res) => {
+app.delete('/users:id',(req,res) => {
   for(let i = 0; i < users.length; i++){
  let id = users.id
  users[i].isactive = false
