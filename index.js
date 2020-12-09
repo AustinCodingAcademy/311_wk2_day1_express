@@ -37,7 +37,14 @@ app.delete('/users/1', (req, res) => {
   res.send('deleted')
 })
 
-
+app.post('/users', (req, res) =>{
+  let newUser = req.body;
+  let counter = users.length;
+  newUser._id = counter + 1;
+  users.push(newUser);
+  let end = users.length - 1;
+  return res.json(users[end])
+})
 /* END - create routes here */
 
 app.listen(port, () => 
