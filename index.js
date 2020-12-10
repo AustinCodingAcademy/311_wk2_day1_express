@@ -45,6 +45,15 @@ app.post('/users', (req, res) =>{
   let end = users.length - 1;
   return res.json(users[end])
 })
+
+app.get('`/users/:userId`', (req, res) =>{
+  let id = req.params.userId;
+  return res.json(users[id]);
+})
+
+app.put('`/users/:userId`', (req, res) =>{
+  
+})
 /* END - create routes here */
 
 app.listen(port, () => 
