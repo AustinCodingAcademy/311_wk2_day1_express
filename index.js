@@ -15,37 +15,37 @@ let counter = users.length + 1;
 
 // get to return users 
 
-// app.get('/users', (req, res) => {
-//   res.json(users)
-// })
+app.get('/users', (req, res) => {
+  res.json(users)
+})
 
 // get request for user by ID
 
-// app.get("/users/1", (req, res) => {
-//   return res.json(users[0]);
-// });
+app.get("/users/1", (req, res) => {
+  return res.json(users[0]);
+});
 
 // post to add another user to the users array
-// app.post('/users', (req, res) => {
-//   myNewUser ={
-//     "_id": 6,
-//     "name": "Marshal Mathers",
-//     "occupation": "musician",
-//     "avatar": "https://www.nme.com/wp-content/uploads/2020/05/Eminem-listening-party-696x442.jpg"
-//   }
-//   users.push(myNewUser);
-//   return res.json(users);
-// })
+app.post('/users', (req, res) => {
+  myNewUser ={
+    "_id": 6,
+    "name": "Marshal Mathers",
+    "occupation": "musician",
+    "avatar": "https://www.nme.com/wp-content/uploads/2020/05/Eminem-listening-party-696x442.jpg"
+  }
+  users.push(myNewUser);
+  return res.json(users);
+})
 
-// app.put("/users/1", (req, res) => {
-//   users[0].occupation = "Walker";
-//   return res.json(users);
-// })
+app.put("/users/1", (req, res) => {
+  users[0].occupation = "Walker";
+  return res.json(users);
+})
 
-// app.delete("/users/1", (req, res) => {
-//   users.splice(0, 1);
-//   res.send("deleted");
-// })
+app.delete("/users/1", (req, res) => {
+  users.splice(0, 1);
+  res.send("deleted");
+})
 
 app.get("/users/:userId", (req, res) => {
   let id = req.params.userId;
@@ -53,12 +53,12 @@ app.get("/users/:userId", (req, res) => {
 })
 
 app.put("/users/:userId", (req, res) => {
-  let newId = req.params.userId - 1;
-  users[newId].name = "Will Smith";
+  let id = req.params.userId -1;
+  users[id].name = "Will Smith";
   return res.json(users);
 })
 
-// Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array
+// // Give your server the ability to respond to a DELETE request with a path "/users/1" and remove the first item from the users array
 app.delete("/users/:userId", (req, res) => {
     let newestId = req.params.userId - 1;
     users[newestId].isActive = false;
