@@ -66,13 +66,13 @@ app.delete("/users/:userId", (req, res) => {
 })
 
 // Give your server the ability to handle a POST request with a path "/users" and add the data from the client to the users array
-// app.post('/users', (req, res) => {
-//   let user = req.body;
-//   user._id = counter
-//   users.push(user);
-//   res.send("success");
-//   res.json(req.body);
-// })
+app.post('/users', (req, res) => {
+  let user = req.body;
+  user._id = counter
+  users.push(user);
+  let end = users.length -1;
+  return res.json(users[end]);
+})
 
 /* END - create routes here */
 
