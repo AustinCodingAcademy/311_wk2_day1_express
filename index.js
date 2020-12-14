@@ -52,7 +52,15 @@ app.get('`/users/:userId`', (req, res) =>{
 })
 
 app.put('`/users/:userId`', (req, res) =>{
-  
+  let id = req.params.userId - 1;
+  users[id].name = "Faye Valentine";
+  return res.json(users)
+})
+
+app.delete('`/users/:userId`', (req, res) =>{
+  let newId = req.params.userId - 1;
+  users[newId].isActive = false;
+  res.send('deleted')
 })
 /* END - create routes here */
 
