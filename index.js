@@ -1,12 +1,20 @@
 
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
 const app = express()
+app.use(bodyParser.json())
 const port = process.env.PORT || 4000
 
-const { users } = require('./state')
+//Routers
+const indexRouter = require('./routes/index')
+
+const aboutRouter = require('./routes/about')
+
 
 /* BEGIN - create routes here */
+app.use('/', indexRouter);
 
+app.use('/about', aboutRouter);
 
 /* END - create routes here */
 
