@@ -1,9 +1,9 @@
 exports.users = [
     {
-        "_id": 1,
-        "name": "Dale Cooper",
-        "occupation": "FBI Agent",
-        "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
+        '_id': 1,
+        'name': "Dale Cooper",
+        'occupation': "FBI Agent",
+        'avatar': "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
     },
     {
         "_id": 2,
