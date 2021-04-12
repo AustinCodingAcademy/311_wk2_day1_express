@@ -15,6 +15,12 @@ app.get('/users', function(req, res) {
   res.json(users); 
 }); 
 
+// hardcoded GET example 
+app.get('/users/1', function(req, res){
+  res.json(users[0]); 
+})
+
+//GET with any user id 
 app.get('/users/:userId', function (req, res){
 
   let id = req.params.userId; 
@@ -28,6 +34,8 @@ app.get('/users/:userId', function (req, res){
   }
   res.status(400).json({ msg: 'No member with the id of ' + id}); 
 })
+
+
 
 // POST route (create)
 app.post('/users', function(req, res){
