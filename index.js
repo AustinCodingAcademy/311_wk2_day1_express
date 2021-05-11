@@ -67,7 +67,18 @@ app.get('users/:userId', function(req, res) {
   res.send(user[id]);
 });
 
+//PART 3: Use path variables
+app.get('/users/:userId', function (req, res) {
+  res.send(req.headers);
+})
 
+app.put('/users/:userId', function(req, res) {
+  res.json('Unemployed');
+})
+
+app.delete('/users/:userId', function(req, res) {
+  res.send(`user has been deleted`);
+})
 
 /* END - create routes here */
 
