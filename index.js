@@ -1,5 +1,6 @@
 
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -40,7 +41,7 @@ app.delete('/users/1', function (req, res) {
   res.send('user has been deleted')
 })
 
-// Part 2: Body-parser module
+// PART 2: Body-parser module
 app.use(bodyParser.json());
 
 app.post('users/:userId', function(req, res) {
@@ -58,7 +59,7 @@ app.post('users/:userId', function(req, res) {
 
 app.put('users/:userId', function(req, res) {
   const id = req.params.id;
-  res.json(users[id].occupation = 'Software Developer');
+  res.json(users[id].occupation = 'Project Manager');
 })
 
 app.get('users/:userId', function(req, res) {
