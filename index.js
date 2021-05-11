@@ -40,6 +40,33 @@ app.delete('/users/1', function (req, res) {
   res.send('user has been deleted')
 })
 
+// Part 2: Body-parser module
+app.use(bodyParser.json());
+
+app.post('users/:userId', function(req, res) {
+  const id = req.params.id;
+
+  let newUser = {
+    '_id': id,
+    'name': req.body,
+    'occupation': req.body,
+    'avatar': req.body
+  }
+  users.push(newUser);
+  res.send(newUser);
+})
+
+app.put('users/:userId', function(req, res) {
+  const id = req.params.id;
+  res.json(users[id].occupation = 'Software Developer');
+})
+
+app.get('users/:userId', function(req, res) {
+  const id = req.params.id;
+  res.send(user[id]);
+});
+
+
 
 /* END - create routes here */
 
